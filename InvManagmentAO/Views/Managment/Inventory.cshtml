@@ -1,0 +1,259 @@
+﻿@page
+@{
+    ViewData["Title"] = "Agricultural Inventory Management";
+    Layout = "_Layout";
+
+    var products = new[]
+    {
+        new
+        {
+            Name = "Grâu Premium",
+            Brand = "AgroPan",
+            ImageUrl = "none",
+            Quantity = 2500,
+            Price = 2.75m
+        },
+        new
+        {
+            Name = "Porumb de Calitate",
+            Brand = "Cerealife",
+            ImageUrl = "none",
+            Quantity = 4200,
+            Price = 1.95m
+        },
+        new
+        {
+            Name = "Mere Golden",
+            Brand = "Pomicult",
+            ImageUrl = "none",
+            Quantity = 1500,
+            Price = 3.20m
+        },
+        new
+        {
+            Name = "Cartofi Proaspeți",
+            Brand = "TerraSol",
+            ImageUrl = "none",
+            Quantity = 5800,
+            Price = 1.10m
+        },
+        new
+        {
+            Name = "Ulei Floarea-Soarelui",
+            Brand = "Oleum",
+            ImageUrl = "none",
+            Quantity = 600,
+            Price = 9.99m
+        }
+    };
+}
+
+@section styles {
+    <style>
+        :root {
+            --primary-green: #3A7D44;
+            --secondary-brown: #8B6C42;
+            --background-cream: #F9F5EB;
+            --accent-yellow: #F9C80E;
+            --text-brown: #4A3C2A;
+        }
+
+        .agriculture-bg {
+            background-color: var(--background-cream);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+
+        .quantity-selector {
+            width: 100px;
+            border: 1px solid var(--secondary-brown);
+            border-radius: 5px;
+            padding: 0.25rem 0.5rem;
+        }
+
+        .fallback-image {
+            background-color: var(--background-cream);
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary-green);
+        }
+    </style>
+}
+
+<div class="container-fluid agriculture-bg min-vh-100 p-4">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="display-5 fw-bold" style="color: var(--primary-green);">Inventar Agricol</h1>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="viewToggle">
+                    <label class="form-check-label" style="color: var(--secondary-brown);">Vizualizare Listă</label>
+                </div>
+            </div>
+
+            <!-- Grid View -->
+            <div class="row row-cols-1 row-cols-md-3 g-4" id="gridView">
+                @foreach (var product in products)
+                {
+                    <div class="col">
+                        <div class="card product-card h-100 shadow-sm">
+                            <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+                                <input type="checkbox" class="form-check-input product-checkbox"
+                                       data-price="@product.Price">
+                                <input type="number"
+                                       class="quantity-selector"
+                                       min="0"
+                                       max="@product.Quantity"
+                                       value="0"
+                                       data-product="@product.Name">
+                            </div>
+                            <div class="fallback-image">
+                                @if (product.ImageUrl == "none")
+                                {
+                                    <span>@product.Name</span>
+                                }
+                                else
+                                {
+                                    <img src="@product.ImageUrl" class="card-img-top" alt="@product.Name"
+                                         style="height: 200px; object-fit: cover;"
+                                         onerror="this.parentElement.innerHTML = '<span>@product.Name</span>'">
+                                }
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title" style="color: var(--primary-green);">@product.Name</h5>
+                                <p class="card-text text-muted">@product.Brand</p>
+                                <div class="d-flex justify-content-between">
+                                    <span class="badge bg-warning text-dark">Stoc: @product.Quantity kg</span>
+                                    <span class="text-end" style="color: var(--secondary-brown);">
+                                        @product.Price.ToString("C2")/kg
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- List View -->
+            <table class="table d-none" id="listView">
+                <thead style="background-color: var(--primary-green); color: white;">
+                    <tr>
+                        <th></th>
+                        <th>Produs</th>
+                        <th>Brand</th>
+                        <th>Cantitate</th>
+                        <th>Preț</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in products)
+                    {
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="form-check-input product-checkbox"
+                                       data-price="@product.Price">
+                            </td>
+                            <td>@product.Name</td>
+                            <td>@product.Brand</td>
+                            <td>
+                                <input type="number"
+                                       class="quantity-selector"
+                                       min="0"
+                                       max="@product.Quantity"
+                                       value="0"
+                                       data-product="@product.Name">
+                                / @product.Quantity kg
+                            </td>
+                            <td>@product.Price.ToString("C2")/kg</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Calculation Panel -->
+        <div class="col-md-3">
+            <div class="sticky-top" style="top: 20px;">
+                <div class="card shadow" style="border-color: var(--secondary-brown);">
+                    <div class="card-header" style="background-color: var(--primary-green); color: white;">
+                        <h5 class="mb-0">Calcul Total</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="selectedItems" class="mb-3">
+                            <p class="text-muted">Selectați produsele...</p>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <strong>Total:</strong>
+                            <span id="totalPrice">0.00 RON</span>
+                        </div>
+                        <button class="btn btn-warning w-100 mt-3" style="background-color: var(--accent-yellow);">
+                            Exportă CSV
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        // View Toggle
+        document.getElementById('viewToggle').addEventListener('change', function() {
+            document.getElementById('gridView').classList.toggle('d-none');
+            document.getElementById('listView').classList.toggle('d-none');
+        });
+
+        // Quantity Input Validation
+        document.querySelectorAll('.quantity-selector').forEach(input => {
+            input.addEventListener('input', function() {
+                const max = parseInt(this.max);
+                const value = parseInt(this.value) || 0;
+                this.value = Math.max(0, Math.min(value, max));
+            });
+        });
+
+        // Update Totals Function
+        function updateTotals() {
+            let total = 0;
+            let selectedItems = [];
+
+            document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
+                const quantityInput = checkbox.closest('tr, .card-header').querySelector('.quantity-selector');
+                const price = parseFloat(checkbox.dataset.price);
+                const quantity = parseInt(quantityInput.value) || 0;
+
+                total += price * quantity;
+                selectedItems.push({
+                    name: checkbox.closest('.card, tr').querySelector('.card-title, td:nth-child(2)').textContent.trim(),
+                    quantity: quantity,
+                    price: price
+                });
+            });
+
+            // Update Display
+            document.getElementById('totalPrice').textContent =
+                total.toLocaleString('ro-RO', { style: 'currency', currency: 'RON' });
+
+            const itemsList = selectedItems.map(item =>
+                `<li class="small">${item.name} (${item.quantity}kg × ${item.price} RON)</li>`
+            ).join('');
+
+            document.getElementById('selectedItems').innerHTML = selectedItems.length > 0
+                ? `<ul class="list-unstyled">${itemsList}</ul>`
+                : `<p class="text-muted">Selectați produsele...</p>`;
+        }
+
+        // Event Listeners
+        document.querySelectorAll('.product-checkbox, .quantity-selector').forEach(element => {
+            element.addEventListener('change', updateTotals);
+        });
+    </script>
+}
