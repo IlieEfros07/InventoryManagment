@@ -1,202 +1,335 @@
 ﻿@page
+@model IEnumerable<InvManagmentAO.Models.Product>
 @{
-    ViewData["Title"] = "Agricultural Inventory Management";
     Layout = "_Layout";
 
-    var products = new[]
-    {
-        new
-        {
-            Name = "Grâu Premium",
-            Brand = "AgroPan",
-            ImageUrl = "none",
-            Quantity = 2500,
-            Price = 2.75m
-        },
-        new
-        {
-            Name = "Porumb de Calitate",
-            Brand = "Cerealife",
-            ImageUrl = "none",
-            Quantity = 4200,
-            Price = 1.95m
-        },
-        new
-        {
-            Name = "Mere Golden",
-            Brand = "Pomicult",
-            ImageUrl = "none",
-            Quantity = 1500,
-            Price = 3.20m
-        },
-        new
-        {
-            Name = "Cartofi Proaspeți",
-            Brand = "TerraSol",
-            ImageUrl = "none",
-            Quantity = 5800,
-            Price = 1.10m
-        },
-        new
-        {
-            Name = "Ulei Floarea-Soarelui",
-            Brand = "Oleum",
-            ImageUrl = "none",
-            Quantity = 600,
-            Price = 9.99m
-        }
-    };
 }
 
 @section styles {
     <style>
         :root {
-            --primary-green: #3A7D44;
-            --secondary-brown: #8B6C42;
-            --background-cream: #F9F5EB;
-            --accent-yellow: #F9C80E;
-            --text-brown: #4A3C2A;
+            --primary: #3A7D44;
+            --secondary: #8B6C42;
+            --background: #F9F9F9;
+            --text: #333333;
+            --border: #E0E0E0;
         }
 
-        .agriculture-bg {
-            background-color: var(--background-cream);
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        .product-card:hover {
-            transform: translateY(-5px);
-            transition: all 0.3s ease;
+        .product-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: all 0.2s ease;
         }
 
-        .quantity-selector {
-            width: 100px;
-            border: 1px solid var(--secondary-brown);
-            border-radius: 5px;
-            padding: 0.25rem 0.5rem;
+            .product-card:hover {
+                box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            }
+
+        .card-header {
+            border-bottom: none;
         }
 
-        .fallback-image {
-            background-color: var(--background-cream);
-            height: 200px;
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+            .btn-primary:hover {
+                background-color: #2d6335;
+                border-color: #2d6335;
+            }
+
+        .placeholder-img {
+            background-color: #f5f5f5;
+            height: 150px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
-            color: var(--primary-green);
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        table {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        thead {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .checkout-dialog {
+            border: none;
+            border-radius: 8px;
+            padding: 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+
+            .checkout-dialog::backdrop {
+                background-color: rgba(0, 0, 0, 0.4);
+            }
+
+        .dialog-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .quantity-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+        }
+
+        .summary-card {
+            position: sticky;
+            top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            background: white;
+        }
+
+        .summary-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .product-action {
+            width: 100%;
+        }
+
+        .add-product-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 24px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
         }
     </style>
 }
+<div class="add-product-btn btn btn-success" data-bs-toggle="modal" data-bs-target="#addProductModal">
+    +
+</div>
 
-<div class="container-fluid agriculture-bg min-vh-100 p-4">
-    <div class="row">
-        <div class="col-md-9">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1 class="display-5 fw-bold" style="color: var(--primary-green);">Inventar Agricol</h1>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="viewToggle">
-                    <label class="form-check-label" style="color: var(--secondary-brown);">Vizualizare Listă</label>
-                </div>
+<!-- Add Product Modal -->
+<div class="modal fade" id="addProductModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Adăugare produs nou</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
+            <div class="modal-body">
+                <form id="addProductForm">
+                    <div class="mb-3">
+                        <label class="form-label">Nume produs</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Brand</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Cantitate (kg)</label>
+                        <input type="number" class="form-control" min="1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Preț (MDL/kg)</label>
+                        <input type="number" step="0.01" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Salvează</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1 class="h3 fw-bold text-primary mb-0">Inventar Agricol</h1>
+        </div>
+        <div class="col-md-4 text-md-end">
+            <div class="form-check form-switch d-inline-block">
+                <input class="form-check-input" type="checkbox" role="switch" id="viewToggle">
+                <label class="form-check-label" for="viewToggle">Vizualizare Listă</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-9">
             <!-- Grid View -->
-            <div class="row row-cols-1 row-cols-md-3 g-4" id="gridView">
-                @foreach (var product in products)
+            <div class="row g-4" id="gridView">
+                @if (Model?.Any() == true)
                 {
-                    <div class="col">
-                        <div class="card product-card h-100 shadow-sm">
-                            <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
-                                <input type="checkbox" class="form-check-input product-checkbox"
-                                       data-price="@product.Price">
-                                <input type="number"
-                                       class="quantity-selector"
-                                       min="0"
-                                       max="@product.Quantity"
-                                       value="0"
-                                       data-product="@product.Name">
-                            </div>
-                            <div class="fallback-image">
-                                @if (product.ImageUrl == "none")
-                                {
+                    @foreach (var product in Model)
+                    {
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card product-card h-100">
+                                <div class="placeholder-img">
                                     <span>@product.Name</span>
-                                }
-                                else
-                                {
-                                    <img src="@product.ImageUrl" class="card-img-top" alt="@product.Name"
-                                         style="height: 200px; object-fit: cover;"
-                                         onerror="this.parentElement.innerHTML = '<span>@product.Name</span>'">
-                                }
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title" style="color: var(--primary-green);">@product.Name</h5>
-                                <p class="card-text text-muted">@product.Brand</p>
-                                <div class="d-flex justify-content-between">
-                                    <span class="badge bg-warning text-dark">Stoc: @product.Quantity kg</span>
-                                    <span class="text-end" style="color: var(--secondary-brown);">
-                                        @product.Price.ToString("C2")/kg
-                                    </span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h5 class="card-title mb-0">@product.Name</h5>
+                                        <span class="badge bg-success">@product.Quantity kg</span>
+                                    </div>
+                                    <p class="text-muted small mb-3">@product.Brand</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="fw-bold">@product.Price.ToString("0.00") MDL/kg</span>
+                                        <input type="number"
+                                               class="quantity-input me-2"
+                                               min="0"
+                                               max="@product.Quantity"
+                                               value="0"
+                                               style="width: 80px;"
+                                               data-product="@product.Name"
+                                               data-price="@product.Price">
+                                        <button class="btn btn-primary btn-sm checkout-button"
+                                                data-product="@product.Name"
+                                                data-max="@product.Quantity">
+                                            Comandă
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    }
+                }
+                else
+                {
+                    <div class="empty-state col-12">
+                        <i class="fas fa-box-open fa-3x text-muted mb-3"></i>
+                        <h4 class="mb-3">Niciun produs în inventar</h4>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                            Adaugă primul produs
+                        </button>
                     </div>
                 }
             </div>
 
             <!-- List View -->
-            <table class="table d-none" id="listView">
-                <thead style="background-color: var(--primary-green); color: white;">
-                    <tr>
-                        <th></th>
-                        <th>Produs</th>
-                        <th>Brand</th>
-                        <th>Cantitate</th>
-                        <th>Preț</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var product in products)
-                    {
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="form-check-input product-checkbox"
-                                       data-price="@product.Price">
-                            </td>
-                            <td>@product.Name</td>
-                            <td>@product.Brand</td>
-                            <td>
-                                <input type="number"
-                                       class="quantity-selector"
-                                       min="0"
-                                       max="@product.Quantity"
-                                       value="0"
-                                       data-product="@product.Name">
-                                / @product.Quantity kg
-                            </td>
-                            <td>@product.Price.ToString("C2")/kg</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Calculation Panel -->
-        <div class="col-md-3">
-            <div class="sticky-top" style="top: 20px;">
-                <div class="card shadow" style="border-color: var(--secondary-brown);">
-                    <div class="card-header" style="background-color: var(--primary-green); color: white;">
-                        <h5 class="mb-0">Calcul Total</h5>
-                    </div>
-                    <div class="card-body">
-                        <div id="selectedItems" class="mb-3">
-                            <p class="text-muted">Selectați produsele...</p>
-                        </div>
-                        <hr>
-                        <div class="d-flex justify-content-between">
-                            <strong>Total:</strong>
-                            <span id="totalPrice">0.00 RON</span>
-                        </div>
-                        <button class="btn btn-warning w-100 mt-3" style="background-color: var(--accent-yellow);">
-                            Exportă CSV
+            <div class="d-none" id="listView">
+                @if (Model?.Any() == true)
+                {
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Produs</th>
+                                <th>Brand</th>
+                                <th>Stoc (kg)</th>
+                                <th>Preț</th>
+                                <th>Cantitate</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var product in Model)
+                            {
+                                <tr>
+                                    <td>@product.Name</td>
+                                    <td>@product.Brand</td>
+                                    <td>@product.Quantity</td>
+                                    <td>@product.Price.ToString("0.00") MDL/kg</td>
+                                    <td style="width: 120px;">
+                                        <input type="number"
+                                               class="quantity-input form-control form-control-sm"
+                                               min="0"
+                                               max="@product.Quantity"
+                                               value="0"
+                                               data-product="@product.Name"
+                                               data-price="@product.Price">
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm checkout-button"
+                                                data-product="@product.Name"
+                                                data-max="@product.Quantity">
+                                            Comandă
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="empty-state">
+                        <i class="fas fa-box-open fa-3x text-muted mb-3"></i>
+                        <h4 class="mb-3">Niciun produs în inventar</h4>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                            Adaugă primul produs
                         </button>
                     </div>
+                }
+            </div>
+
+            <!-- Checkout Dialog -->
+            <dialog id="checkoutDialog" class="checkout-dialog">
+                <div class="dialog-header bg-primary text-white p-3">
+                    <h5 class="m-0" id="checkoutTitle">Comandă produs</h5>
+                </div>
+                <form method="dialog" class="p-4">
+                    <div class="mb-3">
+                        <label for="checkoutQuantity" class="form-label">Cantitate (kg):</label>
+                        <input type="number" id="checkoutQuantity" class="form-control" min="1" required>
+                        <div class="form-text">Stoc disponibil: <span id="availableStock">0</span> kg</div>
+                    </div>
+                    <div class="d-flex justify-content-end gap-2">
+                        <button type="button" class="btn btn-outline-secondary" onclick="this.closest('dialog').close()">Anulează</button>
+                        <button type="submit" class="btn btn-primary">Confirmă</button>
+                    </div>
+                </form>
+            </dialog>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="col-lg-3 mt-4 mt-lg-0">
+            <div class="summary-card">
+                <div class="summary-header bg-primary text-white p-3">
+                    <h5 class="m-0">Sumar Comandă</h5>
+                </div>
+                <div class="p-3">
+                    <div id="selectedItems" class="mb-3">
+                        <p class="text-muted small">Selectați produsele...</p>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <strong>Total:</strong>
+                        <span id="totalPrice" class="fw-bold">0.00 MDL</span>
+                    </div>
+                    <button id="exportBtn" class="btn btn-outline-primary w-100 mt-3" disabled>
+                        Exportă CSV
+                    </button>
                 </div>
             </div>
         </div>
@@ -205,55 +338,100 @@
 
 @section scripts {
     <script>
-        // View Toggle
-        document.getElementById('viewToggle').addEventListener('change', function() {
-            document.getElementById('gridView').classList.toggle('d-none');
-            document.getElementById('listView').classList.toggle('d-none');
-        });
+        document.addEventListener('DOMContentLoaded', function() {
+            // View Toggle
+            const viewToggle = document.getElementById('viewToggle');
+            if (viewToggle) {
+                viewToggle.addEventListener('change', function() {
+                    document.getElementById('gridView').classList.toggle('d-none');
+                    document.getElementById('listView').classList.toggle('d-none');
+                });
+            }
 
-        // Quantity Input Validation
-        document.querySelectorAll('.quantity-selector').forEach(input => {
-            input.addEventListener('input', function() {
-                const max = parseInt(this.max);
-                const value = parseInt(this.value) || 0;
-                this.value = Math.max(0, Math.min(value, max));
-            });
-        });
+            // Checkout Functionality
+            document.querySelectorAll('.checkout-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productName = this.dataset.product;
+                    const maxQty = parseInt(this.dataset.max);
+                    const dialog = document.getElementById('checkoutDialog');
 
-        // Update Totals Function
-        function updateTotals() {
-            let total = 0;
-            let selectedItems = [];
+                    dialog.querySelector('#checkoutQuantity').max = maxQty;
+                    dialog.querySelector('#availableStock').textContent = maxQty;
+                    dialog.querySelector('#checkoutTitle').textContent = `Comandă ${productName}`;
 
-            document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
-                const quantityInput = checkbox.closest('tr, .card-header').querySelector('.quantity-selector');
-                const price = parseFloat(checkbox.dataset.price);
-                const quantity = parseInt(quantityInput.value) || 0;
-
-                total += price * quantity;
-                selectedItems.push({
-                    name: checkbox.closest('.card, tr').querySelector('.card-title, td:nth-child(2)').textContent.trim(),
-                    quantity: quantity,
-                    price: price
+                    dialog.showModal();
+                    dialog.currentProduct = this.closest('.card, tr');
                 });
             });
 
-            // Update Display
-            document.getElementById('totalPrice').textContent =
-                total.toLocaleString('ro-RO', { style: 'currency', currency: 'RON' });
+            // Update Totals
+            function updateTotals() {
+                let total = 0;
+                const selectedItems = [];
 
-            const itemsList = selectedItems.map(item =>
-                `<li class="small">${item.name} (${item.quantity}kg × ${item.price} RON)</li>`
-            ).join('');
+                document.querySelectorAll('.quantity-input').forEach(input => {
+                    const quantity = parseInt(input.value) || 0;
+                    if (quantity > 0) {
+                        const price = parseFloat(input.dataset.price);
+                        total += price * quantity;
+                        selectedItems.push({
+                            name: input.dataset.product,
+                            quantity: quantity,
+                            price: price
+                        });
+                    }
+                });
 
-            document.getElementById('selectedItems').innerHTML = selectedItems.length > 0
-                ? `<ul class="list-unstyled">${itemsList}</ul>`
-                : `<p class="text-muted">Selectați produsele...</p>`;
-        }
+                document.getElementById('totalPrice').textContent =
+                    total.toLocaleString('ro-RO', { style: 'currency', currency: 'MDL' });
 
-        // Event Listeners
-        document.querySelectorAll('.product-checkbox, .quantity-selector').forEach(element => {
-            element.addEventListener('change', updateTotals);
+                document.getElementById('selectedItems').innerHTML = selectedItems.length > 0
+                    ? selectedItems.map(item => `
+                        <div class="d-flex justify-content-between small mb-2">
+                            <span>${item.name}</span>
+                            <span>${item.quantity}kg × ${item.price.toFixed(2)} MDL</span>
+                        </div>`).join('')
+                    : '<p class="text-muted small">Selectați produsele...</p>';
+
+                document.getElementById('exportBtn').disabled = selectedItems.length === 0;
+            }
+
+            // Event Listeners
+            document.querySelectorAll('.quantity-input').forEach(input => {
+                input.addEventListener('input', updateTotals);
+            });
+
+            document.getElementById('checkoutDialog').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const quantity = parseInt(document.getElementById('checkoutQuantity').value);
+                const maxQty = parseInt(this.querySelector('#checkoutQuantity').max);
+
+                if (quantity > 0 && quantity <= maxQty) {
+                    const inputField = this.currentProduct.querySelector('.quantity-input');
+                    inputField.value = quantity;
+                    inputField.dispatchEvent(new Event('input'));
+                    this.close();
+                }
+            });
+
+            // Export CSV
+            document.getElementById('exportBtn').addEventListener('click', function() {
+                let csvContent = "Produs,Cantitate (kg),Preț unitar,Total\n";
+
+                document.querySelectorAll('.quantity-input').forEach(input => {
+                    const quantity = parseInt(input.value);
+                    if (quantity > 0) {
+                        const price = parseFloat(input.dataset.price);
+                        csvContent += `${input.dataset.product},${quantity},${price.toFixed(2)},${(quantity * price).toFixed(2)}\n`;
+                    }
+                });
+
+                const blob = new Blob([csvContent], { type: 'text/csv' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = 'comanda.csv';
+                link.click();
+            });
         });
     </script>
 }

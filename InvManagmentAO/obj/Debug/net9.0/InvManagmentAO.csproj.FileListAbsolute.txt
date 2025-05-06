@@ -171,3 +171,4 @@ C:\dev\InvManagmentAO\InvManagmentAO\obj\Debug\net9.0\refint\InvManagmentAO.dll
 C:\dev\InvManagmentAO\InvManagmentAO\obj\Debug\net9.0\InvManagmentAO.pdb
 C:\dev\InvManagmentAO\InvManagmentAO\obj\Debug\net9.0\InvManagmentAO.genruntimeconfig.cache
 C:\dev\InvManagmentAO\InvManagmentAO\obj\Debug\net9.0\ref\InvManagmentAO.dll
+C:\dev\InvManagmentAO\InvManagmentAO\obj\Debug\net9.0\InvManagmentAO.sourcelink.json

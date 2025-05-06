@@ -65,21 +65,20 @@ namespace InvManagmentAO.Controllers
         [HttpPost]
         public async Task<IActionResult> LoginUser(string name, string password)
         {
-            if(name=="" || password == "")
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(password))
             {
                 ViewBag.Message = "Campurile sunt goale";
                 return View("Login");
             }
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Name == name && u.Password == password);
 
-            Models.User user = await _context.Users.FirstOrDefaultAsync(u => u.Name == name && u.Password == password);
-            if(user != null)
+            if (user == null)
             {
-                return View("Register");
+                ViewBag.Message = "Datele de autentificare sunt incorecte";
+                return View("Login");
             }
 
-            HttpContext.Session.SetString("name", name);
-            return View("Invetory", "Managment");
-
+            return RedirectToAction("Inventory", "Managment"); 
         }
 
 

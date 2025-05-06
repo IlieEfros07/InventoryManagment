@@ -1,0 +1,49 @@
+## Build results
+bin/
+obj/
+out/
+
+## User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## OS generated files
+.DS_Store
+Thumbs.db
+
+## Rider
+.idea/
+
+## Visual Studio Code
+.vscode/
+
+## ASP.NET Core secrets
+**/appsettings.Development.json
+secrets.json
+
+## IIS
+*.vspscc
+.vs/
+*.dbmdl
+
+## Logs
+*.log
+
+## NuGet
+*.nupkg
+*.snupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## EF Migrations snapshots
+*MigrationsSnapshot.cs
+
+## Publish results
+wwwroot/dist/
+wwwroot/node_modules/
+publish/

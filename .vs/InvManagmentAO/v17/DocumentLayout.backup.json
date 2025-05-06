@@ -3,40 +3,24 @@
   "WorkspaceRootPath": "C:\\dev\\InvManagmentAO\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|c:\\dev\\invmanagmentao\\invmanagmentao\\views\\managment\\inventory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|solutionrelative:invmanagmentao\\views\\managment\\inventory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|c:\\dev\\invmanagmentao\\invmanagmentao\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|solutionrelative:invmanagmentao\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|c:\\dev\\invmanagmentao\\invmanagmentao\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|solutionrelative:invmanagmentao\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|c:\\dev\\invmanagmentao\\invmanagmentao\\controllers\\managmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|solutionrelative:invmanagmentao\\controllers\\managmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|c:\\dev\\invmanagmentao\\invmanagmentao\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|solutionrelative:invmanagmentao\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|c:\\dev\\invmanagmentao\\invmanagmentao\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|solutionrelative:invmanagmentao\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|c:\\dev\\invmanagmentao\\invmanagmentao\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|solutionrelative:invmanagmentao\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|c:\\dev\\invmanagmentao\\invmanagmentao\\views\\auth\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|solutionrelative:invmanagmentao\\views\\auth\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|c:\\dev\\invmanagmentao\\invmanagmentao\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|solutionrelative:invmanagmentao\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|c:\\dev\\invmanagmentao\\invmanagmentao\\views\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|solutionrelative:invmanagmentao\\views\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|c:\\dev\\invmanagmentao\\invmanagmentao\\controllers\\managmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|solutionrelative:invmanagmentao\\controllers\\managmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|c:\\dev\\invmanagmentao\\invmanagmentao\\views\\managment\\inventory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|solutionrelative:invmanagmentao\\views\\managment\\inventory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,8 +30,22 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "InvManagmentAO\\Models\\Product.cs",
+              "ToolTip": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Models\\Product.cs*",
+              "RelativeToolTip": "InvManagmentAO\\Models\\Product.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T11:46:27.263Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
@@ -55,117 +53,53 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\appsettings.json",
-              "RelativeDocumentMoniker": "InvManagmentAO\\appsettings.json",
-              "ToolTip": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\appsettings.json",
-              "RelativeToolTip": "InvManagmentAO\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-02T15:11:21.015Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Program.cs",
-              "RelativeDocumentMoniker": "InvManagmentAO\\Program.cs",
-              "ToolTip": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Program.cs",
-              "RelativeToolTip": "InvManagmentAO\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T15:05:06.589Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Register.cshtml",
-              "DocumentMoniker": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Views\\Auth\\Register.cshtml",
-              "RelativeDocumentMoniker": "InvManagmentAO\\Views\\Auth\\Register.cshtml",
-              "ToolTip": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Views\\Auth\\Register.cshtml",
-              "RelativeToolTip": "InvManagmentAO\\Views\\Auth\\Register.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-02T11:56:20.788Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "LogIn.cshtml",
-              "DocumentMoniker": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Views\\Auth\\LogIn.cshtml",
-              "RelativeDocumentMoniker": "InvManagmentAO\\Views\\Auth\\LogIn.cshtml",
-              "ToolTip": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Views\\Auth\\LogIn.cshtml",
-              "RelativeToolTip": "InvManagmentAO\\Views\\Auth\\LogIn.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAABVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-02T11:56:11.437Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "InvManagmentAO\\Controllers\\AuthController.cs",
               "ToolTip": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Controllers\\AuthController.cs",
               "RelativeToolTip": "InvManagmentAO\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAD4AAAAAAAAAAAAIwFEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T11:55:56.161Z",
+              "WhenOpened": "2025-05-06T17:38:29.977Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "Inventory.cshtml",
               "DocumentMoniker": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Views\\Managment\\Inventory.cshtml",
               "RelativeDocumentMoniker": "InvManagmentAO\\Views\\Managment\\Inventory.cshtml",
               "ToolTip": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Views\\Managment\\Inventory.cshtml*",
               "RelativeToolTip": "InvManagmentAO\\Views\\Managment\\Inventory.cshtml*",
-              "ViewState": "AgIAAIIAAAAAAAAAAAAkwAIBAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAUwJgAAABqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-02T11:54:57.949Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ManagmentController.cs",
-              "DocumentMoniker": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Controllers\\ManagmentController.cs",
-              "RelativeDocumentMoniker": "InvManagmentAO\\Controllers\\ManagmentController.cs",
-              "ToolTip": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Controllers\\ManagmentController.cs",
-              "RelativeToolTip": "InvManagmentAO\\Controllers\\ManagmentController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T11:54:37.233Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Product.cs",
-              "DocumentMoniker": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Models\\Product.cs",
-              "RelativeDocumentMoniker": "InvManagmentAO\\Models\\Product.cs",
-              "ToolTip": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Models\\Product.cs",
-              "RelativeToolTip": "InvManagmentAO\\Models\\Product.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T11:46:27.263Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Models\\User.cs",
               "RelativeDocumentMoniker": "InvManagmentAO\\Models\\User.cs",
               "ToolTip": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Models\\User.cs",
               "RelativeToolTip": "InvManagmentAO\\Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-02T11:46:08.855Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ManagmentController.cs",
+              "DocumentMoniker": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Controllers\\ManagmentController.cs",
+              "RelativeDocumentMoniker": "InvManagmentAO\\Controllers\\ManagmentController.cs",
+              "ToolTip": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Controllers\\ManagmentController.cs*",
+              "RelativeToolTip": "InvManagmentAO\\Controllers\\ManagmentController.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T11:54:37.233Z",
               "EditorCaption": ""
             }
           ]
