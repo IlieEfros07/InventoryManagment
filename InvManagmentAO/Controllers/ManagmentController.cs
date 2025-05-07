@@ -6,49 +6,62 @@ namespace InvManagmentAO.Controllers
 {
     public class ManagmentController : Controller
     {
-
-
         private readonly AppDbContext _context;
 
         public ManagmentController(AppDbContext context)
         {
             _context = context;
         }
+
         public IActionResult Inventory()
         {
             ViewData["Title"] = "Agricultural Inventory Management";
             var products = _context.Products.ToList();
-            return View(products);
+            return View(products); 
         }
-        public async Task<IActionResult> Invetory(string productName, string productBrand,string productCategory, string productImage, int productQuantity ,double productPrice)
+
+
+        [HttpPost]
+        public async Task<IActionResult> AddProduct(string productName, string productBrand,
+            string productCategory, string productImage, int productQuantity, double productPrice)
         {
-            var product = await _context.Products.FirstOrDefaultAsync(p => p.Name == productName);
-            if (product.Name == productName)
+
+            var existingProduct = await _context.Products.FirstOrDefaultAsync(p => p.Name == productName);
+            if (existingProduct != null)
             {
-                ViewBag.Message = "Produsul este deja inregistrat";
+                TempData["Message"] = "Produsul este deja înregistrat";
+                return RedirectToAction("Inventory");
             }
-            if(productQuantity <= 0)
+
+
+            if (productQuantity <= 0)
             {
-                ViewBag.Message = "Cantitatea nu poate fi negativa";
+                TempData["Message"] = "Cantitatea nu poate fi negativă sau zero";
+                return RedirectToAction("Inventory");
             }
-            if(productPrice <= 0)
+
+            if (productPrice <= 0)
             {
-                ViewBag.Message = "Pretul nu poate fi negativ";
+                TempData["Message"] = "Prețul nu poate fi negativ sau zero";
+                return RedirectToAction("Inventory");
             }
-            return View();
+
             var newProduct = new Models.Product
             {
                 Name = productName,
                 Brand = productBrand,
-                Category = productCategory,
-                ImagePath = productImage,
+                Category = productCategory ?? "",
+                ImagePath = productImage ?? "",
                 Quantity = productQuantity,
-                Price = productPrice
+                Price = productPrice,
+                Description = "" 
             };
+
             await _context.Products.AddAsync(newProduct);
             await _context.SaveChangesAsync();
-            return View();
 
+            TempData["Success"] = "Produs adăugat cu succes";
+            return RedirectToAction("Inventory");
         }
     }
 }

@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\dev\\InvManagmentAO\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|c:\\dev\\invmanagmentao\\invmanagmentao\\views\\managment\\inventory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|solutionrelative:invmanagmentao\\views\\managment\\inventory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|c:\\dev\\invmanagmentao\\invmanagmentao\\controllers\\managmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|solutionrelative:invmanagmentao\\controllers\\managmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|c:\\dev\\invmanagmentao\\invmanagmentao\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|solutionrelative:invmanagmentao\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|c:\\dev\\invmanagmentao\\invmanagmentao\\views\\managment\\inventory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D65B8EEC-8405-4D68-9BE2-EAE06311D501}|InvManagmentAO\\InvManagmentAO.csproj|solutionrelative:invmanagmentao\\views\\managment\\inventory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,16 +30,16 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Product.cs",
               "DocumentMoniker": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Models\\Product.cs",
               "RelativeDocumentMoniker": "InvManagmentAO\\Models\\Product.cs",
-              "ToolTip": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Models\\Product.cs*",
-              "RelativeToolTip": "InvManagmentAO\\Models\\Product.cs*",
+              "ToolTip": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Models\\Product.cs",
+              "RelativeToolTip": "InvManagmentAO\\Models\\Product.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-02T11:46:27.263Z",
@@ -52,7 +52,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "InvManagmentAO\\Controllers\\AuthController.cs",
@@ -65,20 +65,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "Inventory.cshtml",
               "DocumentMoniker": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Views\\Managment\\Inventory.cshtml",
               "RelativeDocumentMoniker": "InvManagmentAO\\Views\\Managment\\Inventory.cshtml",
-              "ToolTip": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Views\\Managment\\Inventory.cshtml*",
-              "RelativeToolTip": "InvManagmentAO\\Views\\Managment\\Inventory.cshtml*",
-              "ViewState": "AgIAAH0AAAAAAAAAAAAUwJgAAABqAAAAAAAAAA==",
+              "ToolTip": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Views\\Managment\\Inventory.cshtml",
+              "RelativeToolTip": "InvManagmentAO\\Views\\Managment\\Inventory.cshtml",
+              "ViewState": "AgIAAKgAAAAAAAAAAAAUwMYAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-02T11:54:57.949Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Models\\User.cs",
               "RelativeDocumentMoniker": "InvManagmentAO\\Models\\User.cs",
@@ -86,18 +86,17 @@
               "RelativeToolTip": "InvManagmentAO\\Models\\User.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T11:46:08.855Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T11:46:08.855Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ManagmentController.cs",
               "DocumentMoniker": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Controllers\\ManagmentController.cs",
               "RelativeDocumentMoniker": "InvManagmentAO\\Controllers\\ManagmentController.cs",
-              "ToolTip": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Controllers\\ManagmentController.cs*",
-              "RelativeToolTip": "InvManagmentAO\\Controllers\\ManagmentController.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\dev\\InvManagmentAO\\InvManagmentAO\\Controllers\\ManagmentController.cs",
+              "RelativeToolTip": "InvManagmentAO\\Controllers\\ManagmentController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-02T11:54:37.233Z",
               "EditorCaption": ""
