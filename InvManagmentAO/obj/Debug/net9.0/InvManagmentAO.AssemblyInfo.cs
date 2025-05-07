@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("InvManagmentAO")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+52e3819c217ff7064090dfb6342fb8e98f4ff285")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+54332a5dc6f52758efeb04a24320b1d7e2af45d7")]
 [assembly: System.Reflection.AssemblyProductAttribute("InvManagmentAO")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InvManagmentAO")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

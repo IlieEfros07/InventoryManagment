@@ -1,8 +1,6 @@
-﻿
-@model IEnumerable<InvManagmentAO.Models.Product>
+﻿@model IEnumerable<InvManagmentAO.Models.Product>
 @{
     Layout = "_Layout";
-
 }
 
 @section styles {
@@ -132,14 +130,42 @@
             margin: 2rem 0;
         }
 
+        .delete-button {
+            transition: all 0.2s ease;
+        }
+
+            .delete-button:hover {
+                background-color: #dc3545;
+                border-color: #dc3545;
+                transform: scale(1.05);
+            }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+            color: white;
+        }
+
+            .btn-secondary:hover {
+                background-color: #755939;
+                border-color: #755939;
+            }
+
+        .btn-group {
+            gap: 4px;
+        }
+
+        .btn-animate {
+            transform: scale(0.95);
+            transition: transform 0.1s ease;
         }
     </style>
 }
+
 <div class="add-product-btn btn btn-success" data-bs-toggle="modal" data-bs-target="#addProductModal">
     +
 </div>
 
-<!-- Add Product Modal -->
 <div class="modal fade" id="addProductModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -149,6 +175,7 @@
             </div>
             <div class="modal-body">
                 <form id="addProductForm" action="/Managment/AddProduct" method="post">
+                    @Html.AntiForgeryToken()
                     <div class="mb-3">
                         <label class="form-label">Nume produs</label>
                         <input type="text" class="form-control" name="productName" required>
@@ -158,12 +185,24 @@
                         <input type="text" class="form-control" name="productBrand" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Cantitate (kg)</label>
+                        <label class="form-label">Categorie</label>
+                        <input type="text" class="form-control" name="productCategory">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Descriere</label>
+                        <input type="text"  class="form-control" name="productDescription" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Cantitate </label>
                         <input type="number" class="form-control" name="productQuantity" min="1" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Preț (MDL/kg)</label>
+                        <label class="form-label">Preț (MDL)</label>
                         <input type="number" step="0.01" class="form-control" name="productPrice" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Imagine cu produsul</label>
+                        <input type="text"  class="form-control" name="productImg" >
                     </div>
                     <button type="submit" class="btn btn-primary">Salvează</button>
                 </form>
@@ -198,7 +237,8 @@
                         </button>
                     </div>
                 }
-                else{
+                else
+                {
                     @foreach (var product in Model)
                     {
                         <div class="col-md-6 col-lg-4">
@@ -222,11 +262,18 @@
                                                style="width: 80px;"
                                                data-product="@product.Name"
                                                data-price="@product.Price">
-                                        <button class="btn btn-primary btn-sm checkout-button"
-                                                data-product="@product.Name"
-                                                data-max="@product.Quantity">
-                                            Comandă
-                                        </button>
+                                        <div class="btn-group">
+                                            <button class="btn btn-primary btn-sm checkout-button"
+                                                    data-product="@product.Name"
+                                                    data-max="@product.Quantity">
+                                                Comandă
+                                            </button>
+                                            <button class="btn btn-danger btn-sm delete-button"
+                                                    data-id="@product.Id"
+                                                    title="Șterge produs">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -235,7 +282,6 @@
                 }
             </div>
 
-            <!-- List View -->
             <div class="d-none" id="listView">
                 @if (Model?.Any() == true)
                 {
@@ -268,11 +314,18 @@
                                                data-price="@product.Price">
                                     </td>
                                     <td>
-                                        <button class="btn btn-primary btn-sm checkout-button"
-                                                data-product="@product.Name"
-                                                data-max="@product.Quantity">
-                                            Comandă
-                                        </button>
+                                        <div class="btn-group">
+                                            <button class="btn btn-primary btn-sm checkout-button"
+                                                    data-product="@product.Name"
+                                                    data-max="@product.Quantity">
+                                                Comandă
+                                            </button>
+                                            <button class="btn btn-danger btn-sm delete-button"
+                                                    data-id="@product.Id"
+                                                    title="Șterge produs">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             }
@@ -291,7 +344,6 @@
                 }
             </div>
 
-            <!-- Checkout Dialog -->
             <dialog id="checkoutDialog" class="checkout-dialog">
                 <div class="dialog-header bg-primary text-white p-3">
                     <h5 class="m-0" id="checkoutTitle">Comandă produs</h5>
@@ -310,7 +362,6 @@
             </dialog>
         </div>
 
-        <!-- Summary Section -->
         <div class="col-lg-3 mt-4 mt-lg-0">
             <div class="summary-card">
                 <div class="summary-header bg-primary text-white p-3">
@@ -325,9 +376,21 @@
                         <strong>Total:</strong>
                         <span id="totalPrice" class="fw-bold">0.00 MDL</span>
                     </div>
-                    <button id="exportBtn" class="btn btn-outline-primary w-100 mt-3" disabled>
-                        Exportă CSV
-                    </button>
+                    <div class="p-3">
+                        <div id="selectedItems" class="mb-3">
+                            <p class="text-muted small">Selectați produsele...</p>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <strong>Total:</strong>
+                            <span id="totalPrice" class="fw-bold">0.00 MDL</span>
+                        </div>
+                        <div class="d-grid gap-2 mt-3">
+                            <button id="resetBtn" class="btn btn-secondary w-100">
+                                Resetează Comanda
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -337,7 +400,6 @@
 @section scripts {
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // View Toggle
             const viewToggle = document.getElementById('viewToggle');
             if (viewToggle) {
                 viewToggle.addEventListener('change', function() {
@@ -346,7 +408,62 @@
                 });
             }
 
-            // Checkout Functionality
+            document.querySelectorAll('.delete-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.dataset.id;
+                    if (confirm('Sunteți sigur că doriți să ștergeți acest produs?')) {
+                        deleteProduct(productId, this);
+                    }
+                });
+            });
+
+            function deleteProduct(id, buttonElement) {
+                const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+
+                fetch('/Managment/DeleteProduct', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'RequestVerificationToken': token
+                    },
+                    body: `id=${id}`
+                })
+                .then(response => {
+                    if (response.ok) {
+                        const productElement = buttonElement.closest('.col-md-6, tr');
+                        productElement.remove();
+
+                        const productCount = document.querySelectorAll('#gridView .col-md-6, #listView tbody tr').length;
+                        if (productCount === 0) {
+                            const emptyState = `
+                                <div class="empty-state col-12">
+                                    <i class="fas fa-box-open fa-3x text-muted mb-3"></i>
+                                    <h4 class="mb-3">Niciun produs în inventar</h4>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                                        Adaugă primul produs
+                                    </button>
+                                </div>`;
+
+                            document.getElementById('gridView').innerHTML = emptyState;
+                            document.getElementById('listView').innerHTML = `
+                                <div class="empty-state">
+                                    <i class="fas fa-box-open fa-3x text-muted mb-3"></i>
+                                    <h4 class="mb-3">Niciun produs în inventar</h4>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                                        Adaugă primul produs
+                                    </button>
+                                </div>`;
+                        }
+                    } else {
+                        alert('A apărut o eroare la ștergerea produsului.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('A apărut o eroare la ștergerea produsului.');
+                });
+            }
+
             document.querySelectorAll('.checkout-button').forEach(button => {
                 button.addEventListener('click', function() {
                     const productName = this.dataset.product;
@@ -362,7 +479,7 @@
                 });
             });
 
-            // Update Totals
+            // Define updateTotals in the global scope of this function
             function updateTotals() {
                 let total = 0;
                 const selectedItems = [];
@@ -394,7 +511,7 @@
                 document.getElementById('exportBtn').disabled = selectedItems.length === 0;
             }
 
-            // Event Listeners
+            // Add input event listeners to update totals when quantity changes
             document.querySelectorAll('.quantity-input').forEach(input => {
                 input.addEventListener('input', updateTotals);
             });
@@ -412,7 +529,6 @@
                 }
             });
 
-            // Export CSV
             document.getElementById('exportBtn').addEventListener('click', function() {
                 let csvContent = "Produs,Cantitate (kg),Preț unitar,Total\n";
 
@@ -429,6 +545,19 @@
                 link.href = URL.createObjectURL(blob);
                 link.download = 'comanda.csv';
                 link.click();
+            });
+
+            // Add the reset button event listener inside the DOMContentLoaded event
+            const resetBtn = document.getElementById('resetBtn');
+            resetBtn.addEventListener('click', function() {
+                document.querySelectorAll('.quantity-input').forEach(input => {
+                    input.value = 0;
+                });
+
+                updateTotals(); // Now this will work because updateTotals is in scope
+
+                this.classList.add('btn-animate');
+                setTimeout(() => this.classList.remove('btn-animate'), 200);
             });
         });
     </script>
